@@ -2,5 +2,18 @@
 src = "src"
 out = "out"
 libs = ["lib"]
+cache_path  = 'cache_forge'
+optimizer = true
+deny_warnings = false
+solc-version = "0.8.23"
 
-# See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
+# Profile to compile all contracts and deploy scripts
+[profile.deploy]
+src = 'src'
+test = 'script'
+
+
+# Profile to run integration tests in scroll-sepolia
+[profile.integration]
+eth_rpc_url = 'https://sepolia-rpc.scroll.io/'
+test = 'test/'
