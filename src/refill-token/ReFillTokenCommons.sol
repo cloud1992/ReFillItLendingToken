@@ -17,6 +17,7 @@ abstract contract ReFillTokenCommons is
 {
     using SafeERC20 for IERC20;
 
+    // function to receive underlying token ERC20
     function _receiveUnderlying(
         address from,
         uint amount
@@ -28,6 +29,7 @@ abstract contract ReFillTokenCommons is
         return amount;
     }
 
+    // function to transfer underlying token ERC20
     function _transferUnderlying(
         address payable to,
         uint amount
@@ -35,6 +37,7 @@ abstract contract ReFillTokenCommons is
         _underlying.safeTransfer(to, amount);
     }
 
+    
     function isNative()
         public
         pure
@@ -46,6 +49,7 @@ abstract contract ReFillTokenCommons is
     }
 
     // accrue interest
+    // this function is called before any action to update the exchange rate and total reserves
     function _accrueInterest() internal {
         if (_accrualBlockNumber == block.number) return;
         uint liquidyInAaveV3 = _liquidityInAaveV3();
@@ -78,7 +82,6 @@ abstract contract ReFillTokenCommons is
         }
 
         _totalReserves = newTotalReserves;
-
         _accrualBlockNumber = block.number;
         // emit event
         emit AccrueInterest(_exchangeRate, newTotalReserves);
