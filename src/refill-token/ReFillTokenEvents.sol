@@ -8,4 +8,5 @@ abstract contract ReFillTokenEvents is IUnsignedFixed {
     event AccrueInterest(uFixed exchangeRate, uint totalReserves);
     event Redeem(address redeemer, uint underlyingAmount);
     event RemoveReserves(address to, uint amount);
+    event RemoveUserTokens(address user, uint amount);
 }

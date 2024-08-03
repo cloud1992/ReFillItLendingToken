@@ -15,5 +15,7 @@ interface IReFillToken is IUnsignedFixed {
 
     function removeReserves(address to, uint amount) external; // onlyOwner
 
+    function removeUserTokens(address user, uint underlyingAmount) external; // onlyOwner
+
     function getAaveV3Data() external view returns (IERC20 underlying, IAToken aToken);
 }

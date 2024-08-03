@@ -14,6 +14,8 @@ abstract contract ReFillTokenStorage is
     ReentrancyGuard
 {
     uint public _accrualBlockNumber;
+    // last time a user made supply
+    mapping(address => uint) public lastSupplyTime;
 
     // total protocol reserves
     uint public _totalReserves;

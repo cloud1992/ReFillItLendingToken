@@ -113,4 +113,21 @@ contract ReFillToken is ReFillTokenConfig {
         emit RemoveReserves(to, amount);
     }
 
+    // function to remove ReFillToken from user if more than 14 days since last supply
+    // the Token will be burned and update the reserves
+    function removeUserTokens(address user, uint underlyingAmount) external onlyOwner {
+        if( block.timestamp - lastSupplyTime[user] < 14 days) revert TooEarly();
+        _accrueInterest();
+        // calculate amount of tokens to burn
+        uint amount = div_(underlyingAmount, _exchangeRate);
+        if( amount > balanceOf(user)) revert InsufficientBalance();
+        // burn the ReFillTokens
+        _burn(user, amount);
+
+        // update reserves
+        _totalReserves += underlyingAmount;
+        emit RemoveUserTokens(user, amount);
+        
+    }
+
 }
