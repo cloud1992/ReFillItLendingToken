@@ -75,7 +75,7 @@ contract CounterTest is Test, DeployScript {
 
     function signMessage(address to, uint amount, uint nonce) private  returns (bytes memory) {
        (address deployer, uint deployerPrivateKey) = _getDeployer();
-        bytes32 digest = toEthSignedMessageHash(keccak256(abi.encodePacked(to, amount, nonce)));
+        bytes32 digest = keccak256(abi.encodePacked(to, amount, nonce)).toEthSignedMessageHash();
         vm.startPrank(deployer);
         (uint8 v, bytes32 r, bytes32 s) = vm.sign(deployerPrivateKey, digest);
         bytes memory signature = abi.encodePacked(r, s, v); // note the order here is different from line above.
@@ -83,15 +83,6 @@ contract CounterTest is Test, DeployScript {
         return signature;
     }   
     
-
-       function toEthSignedMessageHash(bytes32 messageHash) internal pure returns (bytes32 digest) {
-        /// @solidity memory-safe-assembly
-        assembly {
-            mstore(0x00, "\x19Ethereum Signed Message:\n32") // 32 is the bytes-length of messageHash
-            mstore(0x1c, messageHash) // 0x1c (28) is the length of the prefix
-            digest := keccak256(0x00, 0x3c) // 0x3c is the length of the prefix (0x1c) + messageHash (0x20)
-        }
-    }
 
     function _getDeployer() private view returns (address deployer, uint deployerPrivateKey) {
         deployerPrivateKey = vm.envUint("PRIVATE_KEY");
