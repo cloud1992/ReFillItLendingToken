@@ -1,5 +1,6 @@
 # Compiler files
 cache/
+cache_forge/
 out/
 
 # Ignores development broadcast logs
@@ -12,3 +13,6 @@ docs/
 
 # Dotenv file
 .env
+
+# node 
+node_modules
