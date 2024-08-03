@@ -1,5 +1,5 @@
 # run this script like this:
-# bash scripts/deploy/startAnvilChains.sh scroll ... any desired supported chain
+# bash scripts/deploy/startAnvilChains.sh scroll_sepolia ... any desired supported chain
 
 
 pkill anvil  # Kill all processes with 'pkill anvil'
