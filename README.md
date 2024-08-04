@@ -44,8 +44,8 @@ The ReFillToken contracts interact with the Aave v3 protocol for depositing and 
 ### Prerequisites
 
 - [Node.js](https://nodejs.org/)
-- [Hardhat](https://hardhat.org/)
-- An Ethereum account with funds on the desired network (Mainnet, Scroll, etc.)
+- [Foundry Book](https://book.getfoundry.sh/)
+- An Ethereum account with funds on the desired network (Scroll-Sepolia, Arbitrum-Sepolia.)
 
 ### Installation
 
@@ -86,4 +86,7 @@ $ bash scripts/deploy/startAnvilChains.sh scroll_sepolia
 $ bash scripts/deploy/DeployAnvil.sh --fork scroll_sepolia
 ```
 
+## Multi-Network Support
+
+As a plus, we have also deployed the contracts on the Arbitrum Sepolia network. This allows users to choose between multiple networks (Scroll Sepolia and Arbitrum Sepolia) for interacting with the ReFillToken solution, enhancing flexibility and accessibility.
 
