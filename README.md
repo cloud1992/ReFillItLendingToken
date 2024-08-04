@@ -17,8 +17,8 @@ ReFillToken supports the following types of underlying assets:
 
 ## Deployed Contracts on Scroll-Sepolia
 
-- **ReFillTokenNative (ETH)**: [0xa3f7bf5b0fa93176c260bba57cee85525de2baf4](https://sepolia.scrollscan.com/address/0xa3f7bf5b0fa93176c260bba57cee85525de2baf4)
-- **ReFillTokenUSDC**: [0x25a1df485cfbb93117f12fc673d87d1cddeb845a](https://sepolia.scrollscan.com/address/0x25a1df485cfbb93117f12fc673d87d1cddeb845a)
+- **ReFillTokenNative (ETH)**: [0x5e5713a0d915701f464debb66015add62b2e6ae9](https://sepolia.scrollscan.com/address/0x5e5713a0d915701f464debb66015add62b2e6ae9)
+- **ReFillTokenUSDC**: [0x97fd63d049089cd70d9d139ccf9338c81372de68](https://sepolia.scrollscan.com/address/0x97fd63d049089cd70d9d139ccf9338c81372de68)
 
 ### Key Functions
 
