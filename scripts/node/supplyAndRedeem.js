@@ -2,10 +2,11 @@ require('dotenv').config();
 const { ethers } = require("ethers");
 
 // Configurar el proveedor para la red local
-const provider = new ethers.providers.JsonRpcProvider(process.env.LOCAL_RPC_URL_SCROLL_SEPOLIA);
+const provider = new ethers.providers.JsonRpcProvider(process.env.SCROLL_SEPOLIA_URL);
 
 // Crear una cartera a partir de la clave privada
-const wallet = new ethers.Wallet(process.env.PRIVATE_KEY, provider);
+const signerWallet = new ethers.Wallet(process.env.PRIVATE_KEY, provider);
+const wallet = new ethers.Wallet(process.env.MY_PRIVATE_KEY, provider);
 
 // Dirección del contrato y su ABI
 const contractAddress = require('../../broadcast/DeployScript.s.sol/534351/run-latest.json').transactions[1].contractAddress;
@@ -30,7 +31,7 @@ async function interactWithContract() {
         
         // Crear el mensaje hash
         const nonce = 2;
-        const signer = wallet.address;
+        const signer = signerWallet.address;
         const to = signer;
         console.log(`to: ${to}`);
         const messageHash = ethers.utils.solidityKeccak256(
@@ -38,7 +39,7 @@ async function interactWithContract() {
             [to, amount, nonce]
             );
         // Firmar el mensaje    
-        const signature = await wallet.signMessage(ethers.utils.arrayify(messageHash));
+        const signature = await signerWallet.signMessage(ethers.utils.arrayify(messageHash));
         
         // redeem 
         tx = await ReFillToken.redeem(to, nonce, amount, signature, {gasLimit:1000000});
