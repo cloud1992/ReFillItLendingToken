@@ -36,7 +36,8 @@ contract ReFillToken is ReFillTokenConfig {
 
         // supply in base protocol
         _supplyInAaveV3(amount);
-
+        // update last supply time
+        lastSupplyTime[suplier] = block.timestamp; 
         emit Supply(suplier, amount);
     }
 
